@@ -57,26 +57,17 @@ with detection_graph.as_default():
     with tf.Session(graph=detection_graph) as sess:
         while True:
             start_time = time.time()
-            # Read frame from camera
             ret, image_np = cap.read()
-            # Expand dimensions since the model expects images to have shape: [1, None, None, 3]
             image_np_expanded = np.expand_dims(image_np, axis=0)
-            # Extract image tensor
             image_tensor = detection_graph.get_tensor_by_name('image_tensor:0')
-            # Extract detection boxes
             boxes = detection_graph.get_tensor_by_name('detection_boxes:0')
-            # Extract detection scores
             scores = detection_graph.get_tensor_by_name('detection_scores:0')
-            # Extract detection classes
             classes = detection_graph.get_tensor_by_name('detection_classes:0')
-            # Extract number of detectionsd
             num_detections = detection_graph.get_tensor_by_name(
                 'num_detections:0')
-            # Actual detection.
             (boxes, scores, classes, num_detections) = sess.run(
                 [boxes, scores, classes, num_detections],
                 feed_dict={image_tensor: image_np_expanded})
-            # Visualization of the results of a detection.
             vis_util.visualize_boxes_and_labels_on_image_array(
                 image_np,
                 np.squeeze(boxes),
