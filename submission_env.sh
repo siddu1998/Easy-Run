@@ -110,7 +110,6 @@ else
 	echo "Thank you for your patience, feel free to run the following scripts for demonstration"
 	echo "-------------------------------"
 	echo "1. To run using matplotlib [recommended] use red_round_detection_matplotlib.py        "
-	echo "2. To run using opencv on images use red_round_detection_opencv.py		    "
 	echo "-------------------------------"
 
 	echo "Explore More code and segments of training pipeline"
